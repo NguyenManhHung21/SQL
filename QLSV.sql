@@ -60,9 +60,9 @@ select * from Student where IdFaculty = 01 and Gender = 'Nu';
 select * from Student where IdFaculty = 01 and Gender = 'Nu' and Month(Birthday) > 7; 
 
 --Lấy danh sách sinh viên nhóm theo hai khoa (GROUP BY) với điều kiện chung GIOI_TINH là Nam
-select Faculty.NameFaculty, count(Student.IdStd) as 'Number of Student' from Student
+select Faculty.NameFaculty, Student.IdStd, Student.NameStd, Student.Birthday, Student.Gender as 'Number of Student' from Student
 inner join Faculty on Student.IdFaculty = Faculty.IdFaculty where Student.Gender = 'Nam'
-group by(NameFaculty)
+group by NameFaculty, IdStd, NameStd , Birthday, Gender;
 
 --Viết function: Tạo hàm fn_LayMaVaTenSinhVien (gộp MA_SINH_VIEN và TEN_SINH_VIEN có dấu " - " phân cách.
 create function fn_LayMaVaTenSinhVien(@idStd int, @nameStd varchar(20))
